@@ -36,6 +36,6 @@ include("conexion.php");
 		}
 
 	}else{
-		header("location: log.php?signup&wtf");
+		header("location: log.php?signup&error=wtf");
 	}
 ?>
