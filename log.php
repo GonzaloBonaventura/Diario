@@ -38,6 +38,7 @@
 var myInput = document.getElementById("repass");
 var first = document.getElementById("letter");
 
+
 myInput.onfocus = function() {
   document.getElementById("validation").style.display = "block";
 }
@@ -45,10 +46,17 @@ myInput.onfocus = function() {
 myInput.onblur = function() {
   document.getElementById("validation").style.display = "none";
 }
+first.onkeyup = function(){
+	validate();
+}
+myInput.onkeyup = function(){
+	validate();
+}
+function validate() {
+var myInputV = myInput.value;
+var firstV = first.value;
 
-myInput.onkeyup = function() {
-
-  if(myInput.equals(first)) {  //esto no funciona todavia
+  if(myInputV == (firstV)) {  //esto no funciona todavia?
     validation.classList.remove("invalid");
     validation.classList.add("valid");
   } else {
