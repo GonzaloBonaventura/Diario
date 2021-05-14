@@ -15,9 +15,9 @@
 		if ($sign == false) {
 			echo $sign;
 	 ?>
-	<form class="in">
+	<form class="in" action="login.php" method="post">
 		<h3>Ingresar</h3>
-		<div class="input"><input type="text" name="usuario" placeholder="Usuario" required></div>
+		<div class="input"><input type="text" name="usuario" maxlength="30" placeholder="Usuario" required></div>
 		<div class="input"><input type="Password" name="pass" placeholder="Contraseña" required></div>
 		<div class="input"><input type="submit" name="enviar" value="Ingresar"></div>
 		<a href="log.php?signup" class="bajo">Crear una cuenta</a>
