@@ -6,6 +6,7 @@
 </head>
 <body>
 	<?php include("barra.php");
+
 		$sign = false;
 		if (isset($_GET['signup'])) {
 			$sign = true;
@@ -23,12 +24,12 @@
 	</form>
 	<?php }else{ ?>
 
-	<form class="in">
+	<form class="in" action="signup.php" method="post">
 		<h3>Registrarse</h3>
-		<div class="input"><input type="text" name="usuario" placeholder="Usuario" required></div>
-		<div class="input"><input type="email" name="mail" placeholder="Correo Electronico" required></div>
-		<div class="input"><input type="Password" id="letter" name="pass" placeholder="Contraseña" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe contener al menos un numero, una mayuscula y una minuscula, y al menos 8 caracteres"></div>
-		<div class="input"><input type="Password" id="repass" name="repass" placeholder="Repetir Contraseña" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe contener al menos un numero, una mayuscula y una minuscula, y al menos 8 caracteres"></div><p class="invalid" id="validation"></p>
+		<div class="input"><input type="text" name="usuario" placeholder="Usuario" maxlength="30" required></div>
+		<div class="input"><input type="email" name="mail" maxlength="40" placeholder="Correo Electronico" required></div>
+		<div class="input"><input type="Password" id="letter" name="pass" placeholder="Contraseña" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40}" title="Debe contener al menos un numero, una mayuscula y una minuscula, y entre 8 y 40 caracteres"></div>
+		<div class="input"><input type="Password" id="repass" name="repass" placeholder="Repetir Contraseña" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40}" title="Debe contener al menos un numero, una mayuscula y una minuscula, y entre 8 y 40 caracteres"></div><p class="invalid" id="validation"></p>
 		<div class="input" ><input type="submit" name="enviar" value="Registrarse"></div>
 		<a href="log.php" class="bajo">¿Ya tienes una cuenta?</a>
 	</form>
