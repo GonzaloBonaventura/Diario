@@ -5,8 +5,14 @@
 	<link rel="stylesheet" type="text/css" href="styles.php">
 </head>
 <body>
-	<?php include("barra.php");
+	<?php 
+		include("session.php");
+		include("barra.php");
 
+		if ($logged) {
+			echo "<h3> Ya has ingresado, " . $user_s['usuario'] . "</h3>";
+			echo '<a href="close.php" class="bajo">¿Cerrar la sesion?</a>';
+		}else{
 		$sign = false;
 		if (isset($_GET['signup'])) {
 			$sign = true;
@@ -45,10 +51,10 @@
 
 	<form class="in" action="signup.php" method="post">
 		<h3>Registrarse</h3>
-		<div class="input"><input type="text" name="usuario" placeholder="Usuario" maxlength="30" required></div>
+		<div class="input"><input type="text" name="usuario" placeholder="Usuario" maxlength="30" required pattern="^[^@]+$" title="El nombre de usuario no puede contener arrobas(@)"></div>
 		<div class="input"><input type="email" name="mail" maxlength="40" placeholder="Correo Electronico" required ></div>
-		<div class="input"><input type="Password" id="letter" name="pass" placeholder="Contraseña" required pattern="([^@])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40}" title="Debe contener al menos un numero, una mayuscula y una minuscula, y entre 8 y 40 caracteres y no puede contener arrobas(@)"></div>
-		<div class="input"><input type="Password" id="repass" name="repass" placeholder="Repetir Contraseña" required pattern="([^@])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40}" title="Debe contener al menos un numero, una mayuscula y una minuscula, entre 8 y 40 caracteres, y no puede contener arrobas(@)"></div><p class="invalid" id="validation"></p>
+		<div class="input"><input type="Password" id="letter" name="pass" placeholder="Contraseña" required maxlength="40" min="7" title="Debe contener entre 7 y 40"></div>
+		<div class="input"><input type="Password" id="repass" name="repass" placeholder="Repetir Contraseña" required  maxlength="40" min="7" title="Debe contener entre 7 y 40 caracteres"></div><p class="invalid" id="validation"></p>
 		<?php
 			if (isset($_GET['error'])) {
 				$error = $_GET['error'];
@@ -78,18 +84,15 @@
 		<a href="log.php" class="bajo">¿Ya tienes una cuenta?</a>
 	</form>
 
-	<?php } ?>
+	<?php } } ?>
 	<script>
 var myInput = document.getElementById("repass");
 var first = document.getElementById("letter");
 
-
-myInput.onfocus = function() {
-  document.getElementById("validation").style.display = "block";
-}
-
-myInput.onblur = function() {
-  document.getElementById("validation").style.display = "none";
+myInput.onblur = function(){
+	if (document.getElementById("repass").value == "") {
+		document.getElementById("validation").style.display = "none";	
+	}
 }
 first.onkeyup = function(){
 	validate();
@@ -98,10 +101,13 @@ myInput.onkeyup = function(){
 	validate();
 }
 function validate() {
+	if (!document.getElementById("repass").value == "") {
+	document.getElementById("validation").style.display = "block";	
+}
 var myInputV = myInput.value;
 var firstV = first.value;
 
-  if(myInputV == (firstV)) {  //esto no funciona todavia?
+  if(myInputV == (firstV)) {  
     validation.classList.remove("invalid");
     validation.classList.add("valid");
   } else {

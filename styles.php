@@ -92,6 +92,7 @@ h3{
  	border-top-right-radius: 10px;
  	border-bottom-right-radius: 10px;
 }
+
 a.pag{
 	text-decoration: none;
 	font-size: 20px;
@@ -134,6 +135,7 @@ input{
  	background-color: #f8f8f8;
  	border-radius: 4px;
 }
+
 textarea{
 	display: block;
 	width: calc(80%);
@@ -188,4 +190,12 @@ textarea{
 	display: none;
 	width: 210px;
 	margin-left: 45%;
+}
+.perfil{
+	float: right;
+	border-right: none;
+	border-left: 1px solid black;
+ 	border-top-right-radius: 10px;
+ 	border-bottom-right-radius: 10px;
+ 	color: white;
 }

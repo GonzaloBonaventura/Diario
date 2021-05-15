@@ -6,6 +6,7 @@
 </head>
 <body>
 	<?php
+	include("session.php");
 	 include("barra.php");
 	 include('conexion.php');
 	 $filtro = "SELECT * FROM entradas";
@@ -35,7 +36,12 @@
 		?>
 
 		<div class="entrada">
-			<p class="user"><?php echo $listar_prod['usuario']; ?></p>
+			<p class="user"><?php 
+			$user = $listar_prod['usuario'];
+			
+			$nombre = mysqli_fetch_assoc(mysqli_query($datos_base, "SELECT usuario, id_user FROM log WHERE id_user = '$user'"));
+			echo $nombre['usuario'];
+			?></p>
 			<p class="date"><?php echo $listar_prod['fecha']; ?></p>
 			<pre class="content"><?php echo $listar_prod['contenido']; ?></pre>
 		</div>

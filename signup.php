@@ -1,6 +1,9 @@
 <?php
 include("conexion.php");
 	if (!empty($_POST['usuario']) && !empty($_POST['mail']) && !empty($_POST['pass']) && !empty($_POST['repass'])) {
+	if (!(str_contains($_POST['usuario'],"@")) &&  count($_POST['usuario']) > 6) {
+			
+		
 		$user = $_POST['usuario'];
 		$email = $_POST['mail'];
 		$password = password_hash($_POST['pass'], PASSWORD_BCRYPT); 
@@ -37,5 +40,5 @@ include("conexion.php");
 
 	}else{
 		header("location: log.php?signup&error=wtf");
-	}
+	}}
 ?>
